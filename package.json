@@ -1,0 +1,29 @@
+{
+  "name": "ValidationMutant",
+  "version": "1.0.0",
+  "description": "API MercadoLibre",
+  "main": "./bin/www",
+  "scripts": {
+    "start": "nodemon ./bin/www",
+    "startdev": "nodemon ./bin/www"
+  },
+  "keywords": [
+    "nodejs",
+    "bootstrap",
+    "express"
+  ],
+  "author": "DannyRojas rojas2895@gmail.com",
+  "license": "Api MercadoLibre",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4",
+    "request": "^2.88.2",
+    "validator": "^13.1.1"
+  }
+}
