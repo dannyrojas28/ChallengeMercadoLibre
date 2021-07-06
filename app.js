@@ -3,12 +3,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var app = express();
 
+require('dotenv').config()
+require('./db');
+
+
 var indexRouter = require('./routes/index');
 var mutantRouter = require('./routes/mutant');
+var statsRouter = require('./routes/stats');
 
 const cors = require('cors');
 
-require('dotenv').config()
+
 
 app.use(cors());
 
@@ -20,6 +25,7 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/mutant', mutantRouter);
+app.use('/stats', statsRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

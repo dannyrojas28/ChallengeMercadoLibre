@@ -1,17 +1,20 @@
 var express = require('express');
+const Stats = require('../models');
 var router = express.Router();
 const validator = require('../validationhandler');
 
 /**
  * SERVICE TO VALIDATE IF YOU ARE MUTANT
  */
-router.post('/', function(req, res, next) {
+router.post('/', async (req, res) => {
     try {
         const dna = req.body.dna;
         //validate letters and numbers of string of the array
         ValidateString(dna);
         var resp = isMutant(dna)
         res.status(resp.code);
+        const rest = await Stats.InsertData(resp.response==true ? 1:0);
+        console.log(rest)
         res.json({"code":resp.code,"response":resp.response});
     } catch (error) {
         validator.rendererror(error,res,req);
@@ -103,6 +106,7 @@ function isMutant(dna){
             var follow_obq_lf = 0;
             var xy = x;
             var yx = x;
+
             //we validate if there is more than one four-letter sequence equal vertically and oblique
             for(var y =0; y <num_rows;y++){
                 if(follow_ver==0){
@@ -184,4 +188,5 @@ function isMutant(dna){
     }
     return {code:code,response:response}
 }
+
 module.exports = router;
