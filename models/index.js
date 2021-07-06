@@ -32,8 +32,19 @@ const getData = async () => {
     });
 };
 
+const resetData = async () => {
+    const db = await loadDB();
+    return new Promise(async(resolve, reject) => {
+        await db.collection("stats").deleteOne({}, function(err, result) {
+            if (err)  reject( err);
+            resolve(result)
+        });
+    });
+};
+
 
 module.exports = {
     InsertData: InsertData,
-    getData:getData
+    getData:getData,
+    resetData:resetData,
 }
